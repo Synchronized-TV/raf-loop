@@ -1,7 +1,15 @@
 var inherits = require('inherits')
 var EventEmitter = require('events').EventEmitter
-var now = require('right-now')
 var raf = require('raf')
+
+var now = (
+  window.performance &&
+  window.performance.now ? function now() {
+    return performance.now()
+  } : Date.now || function now() {
+    return +new Date
+  }
+)
 
 module.exports = Engine
 function Engine(fn) {
