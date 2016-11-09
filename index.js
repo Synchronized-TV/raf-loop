@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter
 var raf = require('raf')
 
 var now = (
+  typeof window !== 'undefined' &&
   window.performance &&
   window.performance.now ? function now() {
     return performance.now()
